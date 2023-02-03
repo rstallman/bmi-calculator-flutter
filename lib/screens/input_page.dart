@@ -144,44 +144,44 @@ class _InputPageState extends State<InputPage> {
     );
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('BMI CALCULATOR'),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: Row(
-                children: [
-                  maleCard,
-                  femaleCard,
-                ],
-              ),
-            ),
-            Expanded(
-                child: Row(
+      appBar: AppBar(
+        title: Text('BMI CALCULATOR'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Row(
               children: [
-                weightCard,
-                ageCard,
+                maleCard,
+                femaleCard,
               ],
-            )),
-            BottomButton(
-              buttonTitle: 'CALCULATE',
-              onTap: () {
-                var calc = CalculatorBrain(weight: weight, height: height);
-
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ResultPage(
-                        bmiResult: calc.calculateBMI(),
-                        resultText: calc.getResult(),
-                        interpretation: calc.getInterpretation(),
-                      ),
-                    ));
-              },
             ),
-          ],
-        ));
+          ),
+          Expanded(
+              child: Row(
+            children: [
+              weightCard,
+              ageCard,
+            ],
+          )),
+          BottomButton(
+            buttonTitle: 'CALCULATE',
+            onTap: () {
+              var calc = CalculatorBrain(weight: weight, height: height);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultPage(
+                      bmiResult: calc.calculateBMI(),
+                      resultText: calc.getResult(),
+                      interpretation: calc.getInterpretation(),
+                    ),
+                  ));
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
