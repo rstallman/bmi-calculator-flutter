@@ -57,6 +57,56 @@ class _InputPageState extends State<InputPage> {
       ),
     );
 
+    var heightCard = Expanded(
+      child: ReusableCard(
+        color: kActiveCardColor,
+        cardChild: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'HEIGHT',
+              style: kLabelTextStyle,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: [
+                Text(
+                  height.toString(),
+                  style: kNumberTextStyle,
+                ),
+                Text(
+                  'cm',
+                  style: kLabelTextStyle,
+                ),
+              ],
+            ),
+            SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                inactiveTrackColor: Color(0xFF8D8E98),
+                activeTrackColor: Colors.white,
+                thumbColor: Color(0xFFEB1555),
+                overlayColor: Color(0x29EB1555),
+                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15),
+                overlayShape: RoundSliderOverlayShape(overlayRadius: 30),
+              ),
+              child: Slider(
+                value: height.toDouble(),
+                min: 120,
+                max: 220,
+                onChanged: (double newValue) {
+                  setState(() {
+                    height = newValue.round();
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
     var weightCard = Expanded(
       child: ReusableCard(
         color: kActiveCardColor,
@@ -145,6 +195,7 @@ class _InputPageState extends State<InputPage> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
@@ -158,6 +209,7 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
+          heightCard,
           Expanded(
               child: Row(
             children: [
